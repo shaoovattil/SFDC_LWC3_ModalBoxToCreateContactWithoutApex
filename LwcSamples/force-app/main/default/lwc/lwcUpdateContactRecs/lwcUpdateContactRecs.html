@@ -1,0 +1,32 @@
+<template>
+
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            Contact Account Updation
+        </h3>
+        <div slot="footer">
+            <lightning-button label="Update Contact" variant="brand"  onclick={handleClick} class="slds-m-left_x-small">
+                
+            </lightning-button>
+            <lightning-button label="New Contact" variant="brand" onclick={handleShowModal}  class="slds-m-left_x-small">
+
+            </lightning-button>
+            <c-modal-popup>                
+            </c-modal-popup>
+        </div>
+        
+        <template if:true={contacts.data}>
+            <lightning-datatable
+                key-field="Id"
+                data={contacts.data}
+                columns={columns}                
+                onrowselection={getSelectedName} >
+            </lightning-datatable>            
+        </template>
+        <template if:true={errors}>
+            <p>{errors}</p>
+        </template>
+    </lightning-card>  
+    
+</template>

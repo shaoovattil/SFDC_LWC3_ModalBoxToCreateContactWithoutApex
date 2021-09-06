@@ -1,0 +1,59 @@
+<template>
+
+  <template if:true={showModal}>
+
+    <section
+      role="dialog"
+      tabindex="-1"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+      class="slds-modal slds-fade-in-open" >
+
+      <div class="slds-modal__container">
+        
+        <!-- Header Start -->
+        <header class="slds-modal__header">
+          <lightning-button-icon icon-name="utility:close" class="slds-modal__close" 
+            title="Close this window" icon-class="slds-button_icon-inverse" 
+            onclick={handleDialogClose}>
+          </lightning-button-icon>  
+          <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Add New Contact</h2>            
+        </header>
+        <!-- Header End -->
+
+        <!-- Body starts -->                  
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" >
+          <p>
+            <lightning-card>
+              <lightning-layout>
+                  <lightning-layout-item>
+                      <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess} >
+                        <lightning-input-field field-name='Name'></lightning-input-field>
+                        <lightning-input-field field-name='Email'></lightning-input-field>
+                        <lightning-input-field field-name='Phone'></lightning-input-field>
+                        <lightning-input-field field-name="AccountId" value={recordId}>  </lightning-input-field>
+                        <lightning-input-field field-name='Title'></lightning-input-field>                           
+                      </lightning-record-edit-form>
+                  </lightning-layout-item>
+              </lightning-layout>
+            </lightning-card>
+          </p>
+        </div>
+        <!-- Body End -->
+
+        <!-- Footer starts -->
+        <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_brand" onclick={closeModal} > Cancel </button>
+            <button class="slds-button slds-button_brand" onclick={handleSubmit}> Save </button>
+        </footer>
+        <!-- Footer End-->
+
+      </div>
+    </section>
+
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+  
+</template>
+
